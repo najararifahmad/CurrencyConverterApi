@@ -57,6 +57,8 @@ app.MapGet("/convert", async Task<object> (HttpRequest request,
 
         var exchangeRateKeyEnv = Environment.GetEnvironmentVariable(exchangeRateKey);
 
+        logger.LogInformation("Exchange Rate Key from environment: " + exchangeRateKeyEnv);
+
         string text = await File.ReadAllTextAsync("exchangeRates.json");
 
         Dictionary<string, decimal> exchangeRatesDictionary = JsonConvert.DeserializeObject<Dictionary<string, decimal>>(text)!;
