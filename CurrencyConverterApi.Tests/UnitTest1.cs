@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace CurrencyConverterApi.Tests
 {
@@ -14,16 +13,13 @@ namespace CurrencyConverterApi.Tests
         }
 
         [Fact]
-        public async Task Test1()
+        public async Task TestCurrencyConverter()
         {
             var client = _factory.CreateClient();
 
             var response = await client.GetStringAsync("/convert?sourceCurrency=usd&targetCurrency=inr&amount=2");
 
-            Assert.Equal(@"{
-  ""exchangeRate"": 74,
-  ""convertedAmount"": 148
-}", response);
+            Assert.Equal(@"{""exchangeRate"":74.00,""convertedAmount"":148.00}", response);
         }
     }
 }
